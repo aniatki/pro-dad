@@ -1,0 +1,21 @@
+{
+  "name": "pro-dad",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "migrate": "python3 manage.py makemigrations && python3 manage.py migrate && python3 manage.py runserver"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aniatki/pro-dad.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/aniatki/pro-dad/issues"
+  },
+  "homepage": "https://github.com/aniatki/pro-dad#readme"
+}
