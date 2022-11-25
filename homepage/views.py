@@ -7,3 +7,5 @@ class PackageList(generic.ListView):
     model = Package
     template_name = 'index.html'
     
+def home():
+    return 
