@@ -45,6 +45,11 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'cloudinary',
     'homepage',
+    'log_in',
+    'admin_dashboard',
+    'sign_up',
+    'user_dashboard',
+    'admin_packages',
 ]
 
 MIDDLEWARE = [
