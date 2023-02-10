@@ -11,7 +11,15 @@
 
     <p class="main-paragraph">Choose a time & date when you're available and we'll do the rest!</p>
     <div class="cta-container">
-        <button class="primary-btn">Thursday, 1:40 PM</button>
+        <button class="primary-btn">
+            <label for="date-picker">
+                <input type="date" name="date-picker" id="date-picker">
+            </label>
+            <label for="time-picker">
+                <select id="time-picker">Select one of the times below:
+                </select>
+            </label>
+        </button>
         <div class="btn-helper">
             <p>Tap to <br> Change</p>
             <svg viewBox="0 0 85 8" xmlns="http://www.w3.org/2000/svg">
