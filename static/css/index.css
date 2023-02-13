@@ -363,6 +363,15 @@ header,
     left: -100%;
 }
 
+label[for="date-picker"] > *,
+label[for="time-picker"] > *{
+    padding: .5rem;
+    background: var(--clr-neutral-900);
+    border: 0;
+    color: var(--clr-neutral-100);
+    font-size: 1.25rem;
+}
+
 .heading-hint {
     font-family: var(--ff-sans-serif);
     color: var(--clr-neutral-300);
