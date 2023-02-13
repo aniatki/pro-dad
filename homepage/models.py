@@ -13,7 +13,7 @@ RANGE_1_TO_10 = (
     (7, "High"),
     (8, "Very High"),
     (9, "Extremely High"),
-    (10, "The Highest")
+    (10, "Excellent")
 )
 
 class Package(models.Model):
