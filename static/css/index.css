@@ -70,6 +70,8 @@ header {
 
 .logo {
     grid-column: 1;
+    cursor: pointer;
+    text-decoration: none;
 }
 
 .right-side-menu {

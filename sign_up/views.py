@@ -1,8 +1,4 @@
-from django.shortcuts import render
-from django.contrib.auth.forms import UserCreationForm
-
+from django.shortcuts import render, redirect
 
 def sign_up(request):
-    form = UserCreationForm()
-    context = {'form': form}
     return render(request, "sign_up/sign_up.html", {"title": "Sign Up"})

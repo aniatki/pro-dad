@@ -4,10 +4,10 @@ if (window.location.pathname === "/") {
     // Set minimum date to current date
     const datePicker = document.getElementById('date-picker')
     const today = new Date().toISOString().slice(0, -14)
-    datePicker.setAttribute('min', today)
+    datePicker.min = today
     datePicker.value = today
     const maxDate = new Date(new Date(today).setMonth(new Date().getMonth() + 6)).toISOString().slice(0, -14)
-    datePicker.setAttribute('max', maxDate)
+    datePicker.max = maxDate
 
     // Populating time slots
 
@@ -38,7 +38,7 @@ if (window.location.pathname === "/") {
             
             let choiceIndex = target.getDay()
 
-            let errorMessages = ''
+            let errorMessage = ''
 
             if (choiceIndex === 6) {
                 if (date === 28 && month === 1 || 
@@ -48,7 +48,7 @@ if (window.location.pathname === "/") {
                 
                 inputField.value = `${year}-${month}-${date + 2}`
 
-                errorMessages = `Unfortunately, Saturday isn't available for appointments.`
+                errorMessage = `Unfortunately, Saturday isn't available for appointments.`
             }
 
             if (choiceIndex === 0) {
@@ -59,10 +59,10 @@ if (window.location.pathname === "/") {
             
                 inputField.value = `${year}-${month}-${date + 1}`
                 
-                errorMessages = `Unfortunately, Sunday isn't available for appointments.`
+                errorMessage = `Unfortunately, Sunday isn't available for appointments.`
             }
 
-            return errorMessages
+            return errorMessage
     }
 
     function isDateAvailable(inputField) {
