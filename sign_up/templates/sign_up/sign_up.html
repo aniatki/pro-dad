@@ -11,12 +11,16 @@
     {% csrf_token %}
 
     <div class="form-field">
-      <label for="full-name"> Full name: </label>
-      <input type="text" name="fname" id="fname" />
+      <label for="username"> Username: </label>
+      <input type="text" name="username" id="username" required />
+    </div>
+    <div class="form-field">
+      <label for="fname"> Full name: </label>
+      <input type="text" name="fname" id="fname" required />
     </div>
     <div class="form-field">
       <label for="email"> E-mail: </label>
-      <input type="email" name="email" id="email" />
+      <input type="email" name="email" id="email" required />
     </div>
     <div class="form-field">
       <label for="password">
@@ -26,11 +30,11 @@
           and one lowercase letter.
         </span>
       </label>
-      <input type="password" name="password1" id="password1" />
+      <input type="password" name="password1" id="password1" required />
       <label for="password2">
         Confirm password:
       </label>
-      <input type="password" name="password2" id="password2" />
+      <input type="password" name="password2" id="password2" required />
     </div>
     <p>
       By signing up for an account, you agree to our
