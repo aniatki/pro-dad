@@ -67,6 +67,12 @@
                 </div>
             </header>
 
+            {% if messages %}
+                {% for message in messages %}
+                    {{ message }}
+                {% endfor %}
+            {% endif %}
+
             {% block content %}
             {% endblock %}
             <footer class="footer-section">
