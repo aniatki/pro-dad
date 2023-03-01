@@ -29,40 +29,57 @@ if (window.location.pathname === "/") {
 
     function dateChosen(target, inputField) {
         let year = target.getFullYear()
-            
-            let month = target.getMonth() + 1
-            if (month < 10) month = "0" + month
-            
-            let date = target.getDate()
-            if (date < 10) date = "0" + date
-            
-            let choiceIndex = target.getDay()
+        
+        let month = target.getMonth() + 1
+        if (month < 10) month = `0${month}`
+        
+        let date = target.getDate()
+        if (date < 10) date = `0${date}`
 
-            let errorMessage = ''
+        let choiceIndex = target.getDay()
 
-            if (choiceIndex === 6) {
-                if (date === 28 && month === 1 || 
-                    date === 29 && month === 1) date = -1
-                if (date === 30) date = -1
-                if (date === 31) date = 0
-                
-                inputField.value = `${year}-${month}-${date + 2}`
+        let errorMessage = ''
 
-                errorMessage = `Unfortunately, Saturday isn't available for appointments.`
+        if (choiceIndex === 6) {
+            if (date === 28 && month === 1 || 
+                date === 29 && month === 1) date = -1
+            if (date === 30) date = -1
+            if (date === 31) date = 0
+
+            if (date.length === 2 && typeof date === 'number') {
+                date = parseInt(date) + 1
+            } else if (date.length === 2 && typeof date === 'string' && date.startsWith('0')) {
+                date = `0${parseInt(date.slice(1)) + 2}`
+            } else {
+                date += 2
             }
 
-            if (choiceIndex === 0) {
-                if (date === 28 && month === 1 || 
-                    date === 29 && month === 1) date = 0
-                if (date === 30) date = 0
-                if (date === 31) date = 1
-            
-                inputField.value = `${year}-${month}-${date + 1}`
-                
-                errorMessage = `Unfortunately, Sunday isn't available for appointments.`
-            }
 
-            return errorMessage
+            inputField.value = `${year}-${month}-${date}`
+
+            errorMessage = `Unfortunately, Saturday isn't available for appointments.`
+        }
+
+        if (choiceIndex === 0) {
+            if (date === 28 && month === 1 || 
+                date === 29 && month === 1) date = 0
+            if (date === 30) date = 0
+            if (date === 31) date = 1
+
+            if (date.length === 2 && typeof date === 'number') {
+                date = parseInt(date) + 1
+            } else if (date.length === 2 && typeof date === 'string' && date.startsWith('0')) {
+                date = `0${parseInt(date.slice(1)) + 1}`
+            } else {
+                date += 1
+            }
+        
+            inputField.value = `${year}-${month}-${date}`
+            
+            errorMessage = `Unfortunately, Sunday isn't available for appointments.`
+        }
+
+        return errorMessage
     }
 
     function isDateAvailable(inputField) {
