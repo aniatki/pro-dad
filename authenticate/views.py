@@ -9,6 +9,7 @@ def sign_up(request):
         form = RegisterForm(request.POST)
         if form.is_valid():
             form.save()
+            messages.success(request, 'Successfully created user.')
     else:
         form = RegisterForm()
         
@@ -17,11 +18,12 @@ def sign_up(request):
 
 def log_in(request):
     if request.method == "POST":
-        email = request.POST['email']
+        username = request.POST['username']
         password = request.POST['password']
-        user = authenticate(request, email=email, password=password)
-        if user is not None:
-            login(request, user)
+        user_auth = authenticate(request, username=username, password=password)
+        if user_auth is not None:
+            login(request, user_auth)
+            messages.succes(request, 'Successfully logged in.')
             return redirect('')
         else:
             messages.success(request, "Problem logging in.")

@@ -4,7 +4,7 @@ if (window.location.pathname === "/") {
     // Set minimum date to current date
     const datePicker = document.getElementById('date-picker')
     const today = new Date().toISOString().slice(0, -14)
-    // datePicker.min = today
+    datePicker.min = today
     datePicker.value = today
     const maxDate = new Date(new Date(today).setMonth(new Date().getMonth() + 6)).toISOString().slice(0, -14)
     datePicker.max = maxDate
@@ -54,34 +54,31 @@ if (window.location.pathname === "/") {
         // Saturday
         if (choiceIndex === 6) {
             
-            if (date == '28' && [...month30, ...month31].includes(month)){ 
-                date = '30'                                // date 28 = 30 in month w/ 30, 31 days
-            } else if (
-                date == '29' && month30.includes(month) || // date 29 = 01 in month w/ 30 days
-                date == '30' && month31.includes(month)) { // date 30 = 01 in month w/ 31 days
+            if (
+                date == '29' && month30.includes(month) ||                                                  // 29 in month w/ 30 days, month++
+                date == '30' && month31.includes(month) ||                                                  // 30 in month w/ 31 days, month++
+                ![...month30, ...month31].includes(month) && date === '27' ||                               // 27/02 not leap year, month++
+                ![...month30, ...month31].includes(month) && date === '28' && isLeapYear(year)) {           // 28/02 leap year, month++
                 date = '01'
                 month = `0${parseInt(month) + 1}`
             } else if (
-                date == '30' && month30.includes(month) || // date 30 = 02 in month w/ 30 days
-                date == '31' && month31.includes(month) || // date 31 = 02 in month w/ 31 days
-                ![...month30, ...month31].includes(month) && date === '29' && isLeapYear(year)  // 29/02 leap year
+                date == '30' && month30.includes(month) ||                                                  // date 30 in month w/ 30 days, month++
+                date == '31' && month31.includes(month) ||                                                  // date 31 in month w/ 31 days, month++
+                ![...month30, ...month31].includes(month) && date === '29' && isLeapYear(year) ||           // 29/02 leap year, month++
+                ![...month30, ...month31].includes(month) && date === '28'
             ) {
                 date = '02'
                 month = `0${parseInt(month) + 1}`
             } else if (![...month30, ...month31].includes(month) && date === '27' && isLeapYear(year)) {    // 27/02 leap year
                 date = '29'
-            } else if (
-                ![...month30, ...month31].includes(month) && date === '27' ||   // 27/02 not leap year
-                ![...month30, ...month31].includes(month) && date === '28' && isLeapYear(year)) { // 28/02 leap year
-                date = '01'
-                month = `0${parseInt(month) + 1}`
-            // } else if () { // TBC
-                // date = `01`
-            } else {
-                let dateNum = parseInt(date)
-                date = dateNum <= 7 ? `0${dateNum + 2}` : `${dateNum + 2}`
+            } else {                                                                                        // all other dates += 2
+                try {
+                    let dateNum = parseInt(date)
+                    date = dateNum <= 7 ? `0${dateNum + 2}` : `${dateNum + 2}`    
+                } catch (error) {
+                    errorMessage = 'There was a problem choosing this date, please choose another one.'
+                }
             }
-            
 
             inputField.value = `${year}-${month}-${date}`
 
@@ -90,28 +87,31 @@ if (window.location.pathname === "/") {
 
         // Sunday
         if (choiceIndex === 0) {
-            if (date == '28' && [...month30, ...month31].includes(month)){ 
-                date = '29'                                // date 28 = 29 in month w/ 30, 31 days
-            } else if (date == '29' && [...month30, ...month31].includes(month) // date 29 = 30 in month w/ 30, 31 days
-            ) {
-                date = '30'
-            }else if (
-                date == '30' && month31.includes(month)) { // date 30 = 01 in month w/ 31 days
-                date = '31'
+            if (
+                date == '30' && month30.includes(month) ||                                                  // 30 in month w/ 30 days, month++
+                date == '31' && month31.includes(month) ||                                                  // 31 in month w/ 31 days, month++
+                ![...month30, ...month31].includes(month) && date === '28' ||                               // 28/02 not leap year, month++
+                ![...month30, ...month31].includes(month) && date === '29' && isLeapYear(year)) {           // 29/02 leap year, month++
+                date = '01'
+                month = `0${parseInt(month) + 1}`
             } else if (
-                date == '30' && month30.includes(month) || // date 30 = 01 in month w/ 30 days
-                date == '31' && month31.includes(month)    // date 31 = 01 in month w/ 31 days
+                date == '30' && month30.includes(month) ||                                                  // date 30 in month w/ 30 days, month++
+                date == '31' && month31.includes(month) ||                                                  // date 31 in month w/ 31 days, month++
+                ![...month30, ...month31].includes(month) && date === '29' && isLeapYear(year) ||           // 29/02 leap year, month++
+                ![...month30, ...month31].includes(month) && date === '28'
             ) {
                 date = '01'
                 month = `0${parseInt(month) + 1}`
-            } else if (![...month30, ...month31].includes(month) && date === '27') {
-                date = '28'
-            } else if (![...month30, ...month31].includes(month) && date === '28') {
-                date = '01'
-                month = `0${parseInt(month) + 1}`
-            } else {
-                let dateNum = parseInt(date)
-                date = dateNum <= 7 ? `0${dateNum + 2}` : `${dateNum + 2}`
+            } else if (![...month30, ...month31].includes(month) && date === '28' && isLeapYear(year)) {    // 28/02 leap year
+                date = '29'
+            } else {                                                                                        // all other dates += 2
+                try {
+                    let dateNum = parseInt(date)
+                    date = dateNum <= 7 ? `0${dateNum + 1}` : `${dateNum + 1}`    
+                } catch (error) {
+                    errorMessage = 'There was a problem choosing this date, please choose another one.'
+                    console.error
+                }
             }
         
             inputField.value = `${year}-${month}-${date}`
