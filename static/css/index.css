@@ -88,11 +88,6 @@ main {
     grid-row: 1 / 2;
 }
 
-.decorative-image {
-    grid-column: 5 / -1;
-    grid-row: 1/5;
-}
-
 .big-arrow {
     grid-column: 7 / 7;
     grid-row: 1 / 6;
@@ -118,6 +113,7 @@ header,
 .heading-hint,
 .catalogue,
 .recommendation-sliders,
+.reviews,
 .slider,
 .newsletter,
 .date-time-modal,
@@ -369,6 +365,7 @@ label[for="date-picker"] > *,
 label[for="time-picker"] > *{
     padding: .5rem;
     background: var(--clr-neutral-900);
+    background: transparent;
     border: 0;
     color: var(--clr-neutral-100);
     font-size: 1.25rem;
@@ -628,6 +625,17 @@ label[for="time-picker"] > *{
     font-family: var(--ff-sans-serif);
 }
 
+/* continue button */
+
+.continue {
+    display: inline-block;
+    width: 100%;
+    font-size: 1.5rem;
+    padding-block: .75rem;
+    margin-block-start: 1rem;
+    margin-inline: 0;
+}
+
 /* tips */
 
 .tips-and-reminders {
@@ -687,8 +695,64 @@ span[data-upvotes]::before {
     content: attr(data-upvotes);
 }
 
-span[data-downvotes]::before {
-    content: attr(data-downvotes);
+/* Reviews */
+
+.reviews {
+    background: var(--clr-neutral-100);
+    color: var(--clr-neutral-900);
+    box-shadow: 
+    -55rem 0 var(--clr-neutral-100),
+    55rem 0 var(--clr-neutral-100);
+    padding-inline: 1rem;
+    margin-inline: -1rem;
+}
+
+.reviews h2 {
+    text-transform: uppercase;
+    margin-block: 1rem;
+    font-family: var(--ff-sans-serif);
+}
+
+.review-header-wrapper {
+    margin-block-end: .5rem;
+    display: flex;
+    justify-content: space-between;
+    color: var(--clr-primary-400);
+}
+
+.review-name {
+    font-size: 1.5rem;
+    font-family: var(--ff-serif);
+}
+
+.review-rating {
+    font-family: var(--ff-serif);
+    font-size: 1.5rem;
+}
+
+.text-small {
+    font-size:.75rem;
+}
+
+.review-header, .review-body, .review-date {
+    font-family: var(--ff-sans-serif);
+}
+
+.review-header, .review-date {
+    opacity: .8;
+    margin-block-end: .5rem;
+}
+
+.review-body {
+    opacity: .7;
+}
+
+.review-date {
+    font-size:.75rem;
+    font-weight: 200;
+    display: inline-block;
+    width: 100%;
+    text-align: end;
 }
 
 /* Modal */
@@ -1105,6 +1169,12 @@ div.detail-grid {
     .slider {
         width: 100%;
     }
+
+    .reviews {
+        box-shadow: 
+        -55rem 0 var(--clr-neutral-100),
+        55rem 0 var(--clr-neutral-100);
+    }
 }
 @media screen and (min-width: 40em) {
     :root {
@@ -1119,5 +1189,11 @@ div.detail-grid {
         display: flex;
         flex-direction: row;
         gap: 1rem;
+    }
+
+    .reviews {
+        box-shadow: 
+        -55rem 0 var(--clr-neutral-100),
+        55rem 0 var(--clr-neutral-100);
     }
 }

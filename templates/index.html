@@ -36,7 +36,7 @@
 </main>
 
 <section class="catalogue" id="catalogue">
-    <h2 class="catalogue-header  primary">Catalogue thing below</h2>
+    <h2 class="catalogue-header primary">Catalogue thing below</h2>
     <div class="carousel snaps-inline">
 
         <div class="product-container">
@@ -141,6 +141,8 @@
         </div>
         <input type="range" name="endurance-slider" id="endurance-slider" min="1" step="1" max="10" value="1">
     </div>
+
+    <button type="submit" class="sign-up continue">Continue &rarr;</button>
 </section>
 
 <section class="tips-and-reminders">
@@ -157,7 +159,6 @@
             considered a new set.</li>
         <div>
             <span data-upvotes="105">&#8776; Agree</span>
-            <span data-downvotes="0">&#8777; Disagree</span>
         </div>
     </ul>
     <ul class="list-two">
@@ -173,7 +174,6 @@
                 hour patch test</a> required for first time clients.</li>
         <div>
             <span data-upvotes="105">&#8776; Agree</span>
-            <span data-downvotes="50">&#8777; Disagree</span>
         </div>
     </ul>
     <ul class="list-three">
@@ -191,8 +191,29 @@
         <li>Always get lashes removed professsionally.</li>
         <div>
             <span data-upvotes="105">&#8776; Agree</span>
-            <span data-downvotes="50">&#8777; Disagree</span>
         </div>
     </ul>
+</section>
+
+<section class="reviews">
+    <h2>Reviews</h2>
+    {% if reviews %}
+        {% for review in reviews %}
+            <div class="review">
+                <div class="review-header-wrapper">
+                    <span class="review-name">{{ review.name }}</span>
+                    <div class="review-rating">
+                        <span>{{ review.rating }}</span>
+                        <span class="text-small">/10</span>
+                    </div>
+                </div>
+                <h3 class="review-header">{{ review.header }}</h3>
+                <p class="review-body">{{ review.body }}</p>
+                <span class="review-date">{{ review.date }}</span>
+            </div>
+        {% endfor %}
+    {% else %}
+        <h3 class="review-header">There is no reviews at this time.</h3>
+    {% endif %}
 </section>
 {% endblock %}

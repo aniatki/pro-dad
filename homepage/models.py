@@ -2,6 +2,7 @@ from django.db import models
 from cloudinary.models import CloudinaryField
 from datetime import datetime, date
 from django.utils import timezone
+import cloudinary, cloudinary.uploader, cloudinary.api
 
 
 
@@ -31,17 +32,18 @@ class Package(models.Model):
     image_url = CloudinaryField('image', default='placeholder')
 
     def __str__(self):
-        return self.title
+        return self.name
 
 
 class Review(models.Model):
+    name = models.CharField(max_length=50)
     rating = models.IntegerField(choices=RANGE_1_TO_10)
-    slug = models.SlugField(max_length=200)
-    fname = models.CharField(max_length=50)
-    body = models.TextField(default=timezone.now)
+    header = models.CharField(max_length=200)
+    body = models.TextField(max_length=1000, blank=False)
+    date=models.DateField(default=timezone.now, blank=False)
     
     def __str__(self):
-        return self.rating
+        return str(self.rating)
 
 
 class Booking(models.Model):

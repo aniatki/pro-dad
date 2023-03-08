@@ -46,43 +46,43 @@
     - [Information Sources / Resources](#information-sources--resources)
   - [Acknowledgement](#acknowledgement)
 
-  # Bugs
+# Bugs
 
-  ## Fixed Bugs
+## Fixed Bugs
 
-  ![env.py file was wrongfully commited in early stages | How to fix?](static/images/readme_screenshots/env_py_wrongfully_commited.png)
+![env.py file was wrongfully commited in early stages | How to fix?](static/images/readme_screenshots/env_py_wrongfully_commited.png)
 
-  There was an accidental commit of the <code>env.py</code> file from the early stages of production. Being that this file contains sensitive information, it shouldn't have been commited in the first place, so there is an issue with it being present in the repository. 
+There was an accidental commit of the <code>env.py</code> file from the early stages of production. Being that this file contains sensitive information, it shouldn't have been commited in the first place, so there is an issue with it being present in the repository. 
 
-  First, i tried rebasing, with the following commands:
+First, i tried rebasing, with the following commands:
 
-  <code>git checkout main</code>
+<code>git checkout main</code>
 
-  <code>git log env.py</code>
+<code>git log env.py</code>
 
-  <code>git rebase -i <commit_hash></code>
+<code>git rebase -i <commit_hash></code>
 
-  An editor appears in the workspace, showing the commit history. Every commit line in this file has the keyword <code>pick</code> in front of it. The way you allow for the file to be deleted, is to change that keyword to <code>edit</code>. After saving the file and closing the editor, the following command is required to continue with the process:
+An editor appears in the workspace, showing the commit history. Every commit line in this file has the keyword <code>pick</code> in front of it. The way you allow for the file to be deleted, is to change that keyword to <code>edit</code>. After saving the file and closing the editor, the following command is required to continue with the process:
 
-  <code>git rm env.py</code>
+<code>git rm env.py</code>
 
-  Finally, to complete the rebase, the command <code>git rebase --continue</code> is required.
+Finally, to complete the rebase, the command <code>git rebase --continue</code> is required.
 
-  This process will remove the file from the commit where it was introduced, as well as from any subsequent commits.
+This process will remove the file from the commit where it was introduced, as well as from any subsequent commits.
 
-  However, the way I solved this issue was by running the following commands:
+However, the way I solved this issue was by running the following commands:
 
-  <code>git filter-branch --index-filter 'git rm --cached --ignore-unmatch env.py' HEAD</code>
+<code>git filter-branch --index-filter 'git rm --cached --ignore-unmatch env.py' HEAD</code>
 
-  Followed by:
+Followed by:
 
-  <code>git push --force</code>
+<code>git push --force</code>
 
-  The file will be removed from all git commit history, as if it never existed on this branch. 
+The file will be removed from all git commit history, as if it never existed on this branch. 
 
-  Although, there's a small issue with this solution. Let's say someone has cloned our repo before we got to run the above commands. That means that <code>env.py</code> still lives in another online or offline location and it's a delicacy for our application, as it might expose certain information. If the file exists in a clone of the repo on GitHub, said master branch will show that the origin has had a forced update.
+Although, there's a small issue with this solution. Let's say someone has cloned our repo before we got to run the above commands. That means that <code>env.py</code> still lives in another online or offline location and it's a delicacy for our application, as it might expose certain information. If the file exists in a clone of the repo on GitHub, said master branch will show that the origin has had a forced update.
 
-  At this point, we want to rewrite the history of commits with the command <code>git merge origin/main</code>. Note that, the file that exists in a remote cloned repo will still exist, but, <strong>the developer(s) owning this repo will face <code>forced push</code> issues when they try to push the code into GitHub</strong>. 
-  It is recommended that everybody working on the project is advised to delete the current repo and reclone the now merged main branch without the sensitive file. 
-  
-  This method can be crippling or slowing down the production, however, a workaround to this would be for people who have actually progressed with the project to just move the repo somewhere safe and keep the files they have worked on. After the reclone, the files could be pushed again in the new repo, continuing development.
+At this point, we want to rewrite the history of commits with the command <code>git merge origin/main</code>. Note that, the file that exists in a remote cloned repo will still exist, but, <strong>the developer(s) owning this repo will face <code>forced push</code> issues when they try to push the code into GitHub</strong>. 
+It is recommended that everybody working on the project is advised to delete the current repo and reclone the now merged main branch without the sensitive file. 
+
+This method can be crippling or slowing down the production, however, a workaround to this would be for people who have actually progressed with the project to just move the repo somewhere safe and keep the files they have worked on. After the reclone, the files could be pushed again in the new repo, continuing development.

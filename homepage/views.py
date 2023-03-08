@@ -1,7 +1,9 @@
 from django.shortcuts import render
+from .models import Review
 
 def home(request):
-    return render(request, "index.html", {"title": "Home"})
+    reviews = Review.objects.all()
+    return render(request, "index.html", {"title": "Home", 'reviews': reviews})
 
 
 def handler404(request, exception, template_name="404.html"):
