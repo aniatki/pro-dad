@@ -80,7 +80,7 @@ Followed by:
 
 The file will be removed from all git commit history, as if it never existed on this branch. 
 
-Although, there's a small issue with this solution. Let's say someone has cloned our repo before we got to run the above commands. That means that <code>env.py</code> still lives in another online or offline location and it's a delicacy for our application, as it might expose certain information. If the file exists in a clone of the repo on GitHub, said master branch will show that the origin has had a forced update.
+Although, there's a small issue with this solution. Let's say someone has cloned our repo before we got to run the above commands. That means that <code>env.py</code> still lives in another online or offline location and it's a delicacy for our application, as it might expose certain information. If the file exists in a clone of the repo on GitHub, said main branch will show that the origin has had a forced update.
 
 At this point, we want to rewrite the history of commits with the command <code>git merge origin/main</code>. Note that, the file that exists in a remote cloned repo will still exist, but, <strong>the developer(s) owning this repo will face <code>forced push</code> issues when they try to push the code into GitHub</strong>. 
 It is recommended that everybody working on the project is advised to delete the current repo and reclone the now merged main branch without the sensitive file. 
