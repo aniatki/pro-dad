@@ -2,7 +2,7 @@ from django.db import models
 from cloudinary.models import CloudinaryField
 from datetime import datetime, date
 from django.utils import timezone
-import cloudinary, cloudinary.uploader, cloudinary.api
+import os
 
 
 
@@ -24,12 +24,13 @@ class Package(models.Model):
     name = models.CharField(max_length=200, unique=True)
     slug = models.SlugField(max_length=200, unique=True)
     description = models.TextField()
-    price = models.PositiveIntegerField()
+    price = models.FloatField()
     length = models.IntegerField(choices=RANGE_1_TO_10)
     timeframe = models.IntegerField(choices=RANGE_1_TO_10)
     thickness = models.IntegerField(choices=RANGE_1_TO_10)
     endurance = models.IntegerField(choices=RANGE_1_TO_10)
-    image_url = CloudinaryField('image', default='placeholder')
+    image = CloudinaryField('image', default='placeholder')
+    alt_text = models.CharField(max_length=100, default='package_image')
 
     def __str__(self):
         return self.name
