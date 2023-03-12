@@ -1,15 +1,8 @@
 // Modal stuff
-const modal = document.querySelector(".date-time-modal")
-const form = modal.querySelector("form")
-const button = document.querySelector(".primary-btn")
-const input = modal.querySelector("input")
+const modal = document.querySelector(".modal")
+const openBtn = document.querySelector('.leave-review')
+const closeBtn = document.querySelector('.close-modal')
 
-const LOCAL_STORAGE_KEY = `bookLashAppointment${new Date().getSeconds()}`
-
-form.addEventListener("submit", (e) => {
-    JSON.stringify(localStorage.setItem(LOCAL_STORAGE_KEY, input.value))
-})
-
-button.addEventListener("click", () => {
+openBtn.addEventListener("click", () => {
     modal.showModal()
 })

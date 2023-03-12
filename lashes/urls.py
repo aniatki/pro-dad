@@ -1,7 +1,5 @@
 from django.contrib import admin
 from django.urls import path, include
-import django.urls
-
 import homepage.urls, admin_dashboard.urls, user_dashboard.urls, admin_packages.urls, authenticate.urls
 
 
