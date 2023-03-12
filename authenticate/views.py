@@ -10,10 +10,16 @@ def sign_up(request):
         if form.is_valid():
             form.save()
             messages.success(request, 'Successfully created user.')
+        else:
+            messages.success(request, 'Please review the details you provided.')
     else:
         form = RegisterForm()
         
-    return render(request, "sign_up.html", {"title": "Sign Up", "form": form})
+    return render(request, "sign_up.html", {
+        "title": "Sign Up", 
+        "form": form, 
+        'messages': messages
+        })
 
 
 def log_in(request):
@@ -23,10 +29,13 @@ def log_in(request):
         user_auth = authenticate(request, username=username, password=password)
         if user_auth is not None:
             login(request, user_auth)
-            messages.succes(request, 'Successfully logged in.')
-            return redirect('')
+            messages.success(request, 'Successfully logged in.')
+            return redirect('/user_dashboard')
         else:
-            messages.success(request, "Problem logging in.")
+            messages.success(request, "There seems to be a problem logging in.")
             return redirect('log_in')
 
-    return render(request, "log_in.html", {"title": "Log In"})
+    return render(request, "log_in.html", {
+        "title": "Log In", 
+        'messages': messages
+        })
