@@ -14,10 +14,6 @@
   - [Features](#features)
     - [Home Page](#home-page)
       - [Navbar](#navbar)
-      - [Hero Image](#hero-image)
-      - [Destination Section](#destination-section)
-      - [Footer](#footer)
-    - [About Page](#about-page)
     - [Register](#register)
     - [Login](#login)
     - [Logout](#logout)
@@ -46,13 +42,14 @@
     - [Information Sources / Resources](#information-sources--resources)
   - [Acknowledgement](#acknowledgement)
 
+
 # Bugs
 
 ## Fixed Bugs
 
 ![env.py file was wrongfully commited in early stages | How to fix?](static/images/readme_screenshots/env_py_wrongfully_commited.png)
 
-There was an accidental commit of the <code>env.py</code> file from the early stages of production. Being that this file contains sensitive information, it shouldn't have been commited in the first place, so there is an issue with it being present in the repository. 
+There was an accidental commit of the <code>env.py</code> file from the early stages of development. Being that this file contains sensitive information, it shouldn't have been commited in the first place, so there is an issue with it being present in the repository. 
 
 First, i tried rebasing, with the following commands:
 
