@@ -26,6 +26,7 @@
         <script src="{% static 'scripts/color_theme.js' %}" defer></script>
         <script src="{% static 'scripts/date_picker.js' %}" defer></script>
         <script src="{% static 'scripts/calendar.js' %}" defer></script>
+        <script src="{% static 'scripts/active_class_name.js' %}" defer></script>
         
 
         <title>Lashhh by Belle | {{ title }}</title>
@@ -49,7 +50,11 @@
                 </div>
 
                 <div class="right-side-menu">
-                    <a href="/sign_up" class="sign-up">Sign Up</a>
+
+                    <!-- Display signup button only if there isn't an active session -->
+                    {% if request.session.session_key is None %}
+                        <a href="/sign_up" class="sign-up">Sign Up</a>
+                    {% endif %}
                     
                     <div class="hamburger-menu">
                         <input type="checkbox" name="menu-toggle" id="menu-toggle">
@@ -59,17 +64,14 @@
                             </svg>
                         </label>
                         <ul class="ul-nav-links">
-                            <li><a class="active" href="/"
-                                    onclick="document.querySelector('#menu-toggle').checked = false">Home</a>
-                            </li>
-                            
-                            <li><a href="/#catalogue"
-                                    onclick="document.querySelector('#menu-toggle').checked = false">Catalogue</a>
-                            </li>
-                            
-                            <li><a href="/log_in" 
-                                onclick="document.querySelector('#menu-toggle').checked = false">Log in</a>
-                            </li>
+                            <li><a href="/">Home</a></li>
+                            <li><a href="/#catalogue">Catalogue</a></li>
+
+                            {% if request.session.session_key is None %}
+                                <li><a href="/log_in">Log in</a></li>
+                            {% else %}
+                                <li><a href="/user_dashboard">My dashboard</a></li>
+                            {% endif %}
                         </ul>
                     </div>
                 </div>

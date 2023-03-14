@@ -2,6 +2,8 @@ from django.shortcuts import render, redirect, HttpResponse
 from .forms import RegisterForm
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
+from django.urls import reverse
+import os
 
 
 def sign_up(request):
@@ -9,9 +11,13 @@ def sign_up(request):
         form = RegisterForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('user_dashboard')
-            messages.add_message(request, messages.SUCCESS, 'Successfully created user.')
+            # redirect the user to the next parameter if it exists
+            next_param = request.GET.get('next')
+            if next_param:
+                return redirect(next_param)
+            messages.add_message(request, messages.SUCCESS, 'Account was successfully created.')
         else:
+            # ADD VALIDATION AND ERROR MESSAGES FOR RESPECTIVE FIELDS
             messages.add_message(request, messages.ERROR, "One or more fields in the form is incorrect. Please review.")
     else:
         form = RegisterForm()
@@ -28,6 +34,9 @@ def log_in(request):
         password = request.POST['password']
         user_auth = authenticate(request, username=username, password=password)
         if user_auth is not None:
+            if username == os.environ.get('ADMIN_LOGIN'):
+                login(request, user_auth)
+                return redirect('/admin_dashboard')
             login(request, user_auth)
             messages.add_message(request, messages.SUCCESS, f'Authenticated as {username}.')
             return redirect('/user_dashboard')

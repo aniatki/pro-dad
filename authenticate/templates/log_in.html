@@ -8,6 +8,8 @@
 
             <form action="" method="POST">
                 {% csrf_token %}
+                <input type="hidden" name="next" value="{{ request.GET.next }}">
+
                 <div class="form-field">
                     <label for="username">
                         Username:

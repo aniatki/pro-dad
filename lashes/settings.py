@@ -51,9 +51,10 @@ INSTALLED_APPS = [
     'authenticate',
     'admin_dashboard',
     'user_dashboard',
-    'admin_packages',
 ]
 
+
+LOGIN_URL = 'log_in'
 LOGIN_REDIRECT_URL = 'user_dashboard'
 LOGOUT_REDICRECT_URL = 'log_in'
 

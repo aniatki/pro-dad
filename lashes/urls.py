@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.urls import path, include
-import homepage.urls, admin_dashboard.urls, user_dashboard.urls, admin_packages.urls, authenticate.urls
+import homepage.urls, admin_dashboard.urls, user_dashboard.urls, authenticate.urls
 
 
 urlpatterns = [
@@ -9,5 +9,4 @@ urlpatterns = [
     path('', include(admin_dashboard.urls)),
     path('', include(authenticate.urls)),
     path('', include(user_dashboard.urls)),
-    path('', include(admin_packages.urls)),
 ]
