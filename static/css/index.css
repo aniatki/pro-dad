@@ -400,7 +400,7 @@ label[for="time-picker"] > *{
 }
 
 .snaps-inline {
-    padding: 1.5rem 1.5rem 3rem 2.5rem;
+    padding: 1.5rem 1.5rem 6rem 2.5rem;
     overflow-x: auto;
     display: grid;
     grid-auto-flow: column;
@@ -512,10 +512,11 @@ label[for="time-picker"] > *{
 }
 
 .arrow {
-    --arrow-width: 3px;
-    height: var(--arrow-width);
+    --arrow-height: 3px;
+    height: var(--arrow-height);
     aspect-ratio: 58 / 4;
-    background-color: var(--clr-primary-400);
+    color: var(--clr-primary-400);
+    background-color: currentColor;
     position: relative;
     border-top-right-radius: 100vw;
     border-bottom-right-radius: 100vw;
@@ -527,10 +528,10 @@ label[for="time-picker"] > *{
 .arrow::after {
     content: "";
     position: absolute;
-    height: var(--arrow-width);
+    height: var(--arrow-height);
     aspect-ratio: 100 / 21;
-    background-color: var(--clr-primary-400);
-    right: calc(-1 * var(--arrow-width));
+    background-color: currentColor;
+    right: calc(-1 * var(--arrow-height));
     transform-origin: right;
 }
 

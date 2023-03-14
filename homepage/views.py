@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .models import Review, Package
+from admin_dashboard.models import Review, Package
 from django.contrib import messages
 
 def home(request):
@@ -9,6 +9,7 @@ def home(request):
         'title': 'Home', 
         'reviews': reviews, 
         'packages': packages,
+        'request': request,
         })
 
 

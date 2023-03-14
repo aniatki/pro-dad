@@ -6,7 +6,7 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('homepage', '0003_auto_20230211_1952'),
+        ('admin_dashboard', '0003_auto_20230211_1952'),
     ]
 
     operations = [

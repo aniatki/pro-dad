@@ -47,3 +47,9 @@ def log_in(request):
     return render(request, "log_in.html", {
         "title": "Log In",
         })
+
+
+def log_out(request):
+    logout(request)
+    messages.add_message(request, messages.SUCCESS, 'Successfully logged out.')
+    return redirect('log_in')

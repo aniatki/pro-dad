@@ -7,7 +7,7 @@ from django.db import migrations
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('homepage', '0021_remove_package_image'),
+        ('admin_dashboard', '0021_remove_package_image'),
     ]
 
     operations = [

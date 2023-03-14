@@ -67,10 +67,17 @@
                             <li><a href="/">Home</a></li>
                             <li><a href="/#catalogue">Catalogue</a></li>
 
+                            <!-- Check if there is a user logged in -->
                             {% if request.session.session_key is None %}
                                 <li><a href="/log_in">Log in</a></li>
                             {% else %}
-                                <li><a href="/user_dashboard">My dashboard</a></li>
+                                <!-- Check if admin is logged in -->
+                                {% if request.user.is_authenticated and request.user.is_superuser %}
+                                    <li><a href="/admin_dashboard">My dashboard</a></li>
+                                {% else %}
+                                    <li><a href="/user_dashboard">My dashboard</a></li>
+                                {% endif %}
+                                
                             {% endif %}
                         </ul>
                     </div>

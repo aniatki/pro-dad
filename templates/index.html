@@ -38,41 +38,17 @@
 <section class="catalogue" id="catalogue">
     <h2 class="catalogue-header primary">Catalogue thing below</h2>
     <div class="carousel snaps-inline">
-
         {% for package in packages %}
-            <div class="product-container">
-                {% if "placeholder" in package.image.url %}
-                    <img src="https://codeinstitute.s3.amazonaws.com/fullstack/blog/default.jpg">
-                {% else %}
+            {% if package.status == 1 %}
+                <div class="product-container">
                     <img src="{{ package.image.url | safe }}" alt="{{ package.alt_text }}">
-                {% endif %}
-                <p class="price-from">from<br><span>€ {{ package.price }}</span></p>
-                <h3 class="product-title">{{ package.name }}</h3>
-                <span class="arrow"></span>
-            </div>
+                    <p class="price-from">from<br><span>€ {{ package.price }}</span></p>
+                    <h3 class="product-title">{{ package.name }}</h3>
+                    <span class="arrow"></span>
+                    <p> {{ package.slug }} </p>
+                </div>
+            {% endif %}
         {% endfor %}
-        <!-- <div class="product-container">
-            <img src="https://images.squarespace-cdn.com/content/v1/5d9ce1fcb6130c65992f5743/1596300575457-4AYZ2YLXLZUXX6LIXA9U/Xtreme+Lash+Volume+Image+5.jpg?format=1000w"
-                alt="Classic Lashes">
-            <p class="price-from">from<br><span>€ 49.99</span></p>
-            <h3 class="product-title">Classic Lashes</h3>
-            <span class="arrow"></span>
-        </div>
-        <div class="product-container">
-            <img src="https://images.squarespace-cdn.com/content/v1/5d9ce1fcb6130c65992f5743/1596300522902-EW11JL3M1T3ZO075UUF4/Xtreme+Lash+Hybrid+Image+1.jpg?format=1500w"
-                alt="Classic Lashes">
-            <p class="price-from">from<br><span>€ 49.99</span></p>
-            <h3 class="product-title">Classic Lashes</h3>
-            <span class="arrow"></span>
-        </div>
-        <div class="product-container">
-            <img src="https://images.squarespace-cdn.com/content/v1/5d9ce1fcb6130c65992f5743/1605829638244-RNGXZUCFKGDIEI3B5VEQ/Mega%252BVolume%252BMed%252BPic.jpg?format=1000w"
-                alt="Classic Lashes">
-            <p class="price-from">from<br><span>€ 49.99</span></p>
-            <h3 class="product-title">Classic Lashes</h3>
-            <span class="arrow"></span>
-        </div> -->
-
     </div>
 </section>
 

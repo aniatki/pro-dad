@@ -3,9 +3,13 @@
 
 {% block content %}
 
+<a href="{% url 'log_out' %}" class="btn-pill">
+    Log out &#10138;
+</a>
+
 <main class="dashboard-main">
     <div class="dashboard-user-container">
-        <h2 class="user">{{ user_name }}Null</h2>
+        <h2 class="user">{{ user_name }}</h2>
         <p>Your upcoming appointments are shown here.</p>
     </div>
     

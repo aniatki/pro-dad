@@ -7,7 +7,7 @@ import django.utils.timezone
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('homepage', '0013_remove_review_body'),
+        ('admin_dashboard', '0013_remove_review_body'),
     ]
 
     operations = [

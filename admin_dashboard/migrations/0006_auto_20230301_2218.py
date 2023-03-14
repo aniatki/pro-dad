@@ -6,7 +6,7 @@ from django.db import migrations
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('homepage', '0005_appointmenttimes_booking'),
+        ('admin_dashboard', '0005_appointmenttimes_booking'),
     ]
 
     operations = [

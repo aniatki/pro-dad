@@ -7,7 +7,7 @@ import django.utils.timezone
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('homepage', '0016_alter_review_header'),
+        ('admin_dashboard', '0016_alter_review_header'),
     ]
 
     operations = [
