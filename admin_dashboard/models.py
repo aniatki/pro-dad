@@ -4,7 +4,6 @@ from datetime import datetime, date
 from django.utils import timezone
 
 
-
 STATUS = ((0, "Draft"), (1, "Published"))
 RANGE_1_TO_10 = (
     (1, "Extremely Low"),
@@ -64,10 +63,12 @@ class Booking(models.Model):
         ('1700', '17:00'),
     ]
     booked_at = models.DateField(auto_now_add=True, blank=False)
-    customer_name = models.CharField(max_length=50)
+    # user = models.ForeignKey(UserCreationForm, on_delete=models.CASCADE, null=True, blank=True)
     time = models.CharField(max_length=4, choices=APPOINTMENT_TIMES)
     date = models.DateField(blank=False, default=timezone.now)
-    
+    # get package name from Package.name
+    # get package price from Package.price
+
     def __str__(self):
         return self.date.strftime("%m/%d/%Y")
 

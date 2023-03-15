@@ -1,27 +1,27 @@
-from django.shortcuts import render, redirect, HttpResponse
+from django.shortcuts import render, redirect
 from .forms import RegisterForm
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
-from django.urls import reverse
 import os
 
 
 def sign_up(request):
     if request.method == "POST":
         form = RegisterForm(request.POST)
+        username = request.POST.get('username')
         if form.is_valid():
             form.save()
-            # redirect the user to the next parameter if it exists
+            # redirect the user to the 'next' parameter from the template, if it exists
             next_param = request.GET.get('next')
             if next_param:
                 return redirect(next_param)
             messages.add_message(request, messages.SUCCESS, 'Account was successfully created.')
         else:
-            # ADD VALIDATION AND ERROR MESSAGES FOR RESPECTIVE FIELDS
-            messages.add_message(request, messages.ERROR, "One or more fields in the form is incorrect. Please review.")
+            messages.add_message(request, messages.ERROR, f"The username <strong>{username}</strong> already exists.")
     else:
         form = RegisterForm()
         
+
     return render(request, "sign_up.html", {
         "title": "Sign Up", 
         "form": form,

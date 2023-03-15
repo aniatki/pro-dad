@@ -179,36 +179,44 @@
 <section class="reviews">
     <div class="reviews-top-header">
         <h2>Reviews</h2>
-        <!-- Button trigger modal -->
-        <button type="button" class="leave-review" data-toggle="modal" data-target="#exampleModal">
-            <span class="material-symbols-outlined">
-                post_add
-            </span>
-            Leave a review
-        </button>
 
-        <!-- Modal -->
-        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-                </div>
-                <div class="modal-body">
-                There is some content inside the modal.
-                </div>
-                <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
+        {% if request.session.session_key is None%}
+        <div class="no-session">
+            <a href="{% url 'log_in' %}">Log in</a> or <a href="{% url 'sign_up' %}">sign up</a> to add a review
+        </div>
+        {% else %}
+        <div class="add-review">
+            <!-- Button trigger modal -->
+            <button type="button" class="leave-review" data-toggle="modal" data-target="#exampleModal">
+                <span class="material-symbols-outlined">
+                    post_add
+                </span>
+                Leave a review
+            </button>
+            
+            <!-- Modal -->
+            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            There is some content inside the modal.
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-primary">Save changes</button>
+                        </div>
+                    </div>
                 </div>
             </div>
-            </div>
+            {% endif %}
         </div>
 
-    </div>
 
     {% if reviews %}
         {% for review in reviews %}
@@ -228,5 +236,7 @@
     {% else %}
         <h3 class="review-header">There is no reviews at this time.</h3>
     {% endif %}
+    </div>
+
 </section>
 {% endblock %}

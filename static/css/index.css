@@ -121,6 +121,7 @@ header,
 .newsletter,
 .date-time-modal,
 .tips-and-reminders,
+.footer-section,
 .admin-dashboard {
     grid-column: 1/-1;
 }
@@ -846,6 +847,14 @@ span[data-upvotes]::before {
 .modal {
     width: 100%;
     height: 100vh;
+}
+
+/* Footer */
+
+.footer-section {
+    font-family: var(--ff-serif);
+    display: flex;
+    justify-content: center;
 }
 
 /* Sign-up page */

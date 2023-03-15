@@ -2,11 +2,15 @@ const ulElem = document.querySelector('.ul-nav-links')
 const li = ulElem.querySelectorAll('li') // Select all elements which the class name can be applied to
 const homeLink = ulElem.children[0].firstChild
 const myDashboardLink = ulElem.children[2].firstChild
+const url = window.location.pathname
 
 li.forEach(tag => tag.addEventListener('click', onClickClassToggle)) // Loop through them and add click events
 
-window.location.pathname == '/' ? homeLink.classList.add('active') : homeLink.classList.remove('active')
-window.location.pathname == '/user_dashboard/' ? myDashboardLink.classList.add('active') : myDashboardLink.classList.remove('active')
+url == '/' ? homeLink.classList.add('active') : homeLink.classList.remove('active')
+url == '/user_dashboard/' || 
+url == '/admin_dashboard' ? 
+myDashboardLink.classList.add('active') : 
+myDashboardLink.classList.remove('active')
 
 function onClickClassToggle(e) {
     let target = e.target
