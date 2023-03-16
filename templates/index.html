@@ -45,7 +45,6 @@
                     <p class="price-from">from<br><span>€ {{ package.price }}</span></p>
                     <h3 class="product-title">{{ package.name }}</h3>
                     <span class="arrow"></span>
-                    <p> {{ package.slug }} </p>
                 </div>
             {% endif %}
         {% endfor %}
@@ -55,7 +54,7 @@
 <section class="recommendation-sliders">
     <p class="recommendation-description">
         Before you go any further, we'd like to ask you some of your preferences about lashes for better
-        recommendations and your future self will thank you!
+        recommendations.
     </p>
     <div class="slider">
         <label for="length-slider">
@@ -214,8 +213,9 @@
                     </div>
                 </div>
             </div>
-            {% endif %}
         </div>
+        {% endif %}
+    </div>
 
 
     {% if reviews %}

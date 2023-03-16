@@ -52,7 +52,7 @@
                 <div class="right-side-menu">
 
                     <!-- Display signup button only if there isn't an active session -->
-                    {% if request.session.session_key is None or request.path != '/sign_up/' %}
+                    {% if request.session.session_key is None %}
                         <a href="/sign_up" class="sign-up">Sign Up</a>
                     {% endif %}
                     
@@ -95,7 +95,7 @@
             {% endblock %}
             
             <footer class="footer-section">
-                <h5>Lashhh by Belle &copy; 2023 | <a class="primary" target="_blank" aria-label="Visit this website's developer atki.ie. Opens in a new tab." href="https://www.atki.ie">atki.ie</a></h5>
+                <p>Lashhh by Belle &copy; 2023 | <a class="primary" target="_blank" aria-label="Visit this website's developer atki.ie. Opens in a new tab." href="https://www.atki.ie">atki.ie</a></p>
             </footer>
         </div>
 

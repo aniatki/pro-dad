@@ -5,22 +5,25 @@
 <a href="{% url 'log_out' %}" class="btn-pill">
     Log out &#10138;
 </a>
-</header>
 
 <main class="admin-dashboard">
     <section class="admin-section-header">
         <div>
             <h3>Logged in as <strong>{{ request.user }}</strong></h3>
         </div>
-        <p>All your upcoming appointments will appear listed below.</p>
+        <p>All your appointments will appear listed below.</p>
     </section>
 
     {% for booking in bookings %}
     <article class="admin-section-appointment">
         <div>
-            <h3>{{ booking.customer_name }}</h3>
+            <h3><h3>
             <div>
-                <span>{{ booking.date }}</span><span>{{ booking.time }}</span><span>1 hour</span>
+                <span>{{ booking.date }} </span> 
+                at 
+                <span>{{ booking.time }} </span> 
+                for 
+                <span>1 hour</span>
             </div>
             <p>{{ booking.id }}</p>
         </div>
@@ -31,12 +34,15 @@
         </div>
     </article>
     {% endfor %}
+
     <a href="#" target="_top">Back to top &uarr;</a>
+
 </main>
-<footer>
+
+<div>
     <a href="{% url 'admin_packages' %}" class="view-packages-btn">
         View all packages
     </a>
-</footer>
+</div>
 
 {% endblock %}

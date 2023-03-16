@@ -39,7 +39,8 @@ class Package(models.Model):
         return self.slug
 
     def slug(self):
-        return self.name.join(' ', '-').lower()
+        nlist = self.name.casefold().split(' ') 
+        return '-'.join(nlist)
 
 
 
@@ -56,15 +57,14 @@ class Review(models.Model):
 
 class Booking(models.Model):
     APPOINTMENT_TIMES = [
-        ('0900', '09:00'),
-        ('1030', '10:30'),
-        ('1200', '12:00'),
-        ('1530', '15:30'),
-        ('1700', '17:00'),
+        ('09:00', '0900'),
+        ('10:30', '1030'),
+        ('12:00', '1200'),
+        ('15:30', '1530'),
+        ('17:00', '1700'),
     ]
     booked_at = models.DateField(auto_now_add=True, blank=False)
-    # user = models.ForeignKey(UserCreationForm, on_delete=models.CASCADE, null=True, blank=True)
-    time = models.CharField(max_length=4, choices=APPOINTMENT_TIMES)
+    time = models.CharField(max_length=5, choices=APPOINTMENT_TIMES)
     date = models.DateField(blank=False, default=timezone.now)
     # get package name from Package.name
     # get package price from Package.price

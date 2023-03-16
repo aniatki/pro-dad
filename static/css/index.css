@@ -853,8 +853,10 @@ span[data-upvotes]::before {
 
 .footer-section {
     font-family: var(--ff-serif);
+    font-size: 0.75rem;
     display: flex;
     justify-content: center;
+    margin: 1.5rem auto auto auto;
 }
 
 /* Sign-up page */
@@ -1056,7 +1058,8 @@ form p {
 
 .btn-pill {
     display: inline-block;
-    padding: 0.5rem 2rem;
+    padding: 0.25rem 1rem;
+    min-width: max-content;
     border: none;
     background-color: var(--clr-neutral-100);
     text-decoration: none;
@@ -1124,9 +1127,10 @@ form p {
     color: var(--clr-neutral-900);
 }
 
-.admin-section-appointment > div:last-of-type > button {
+.admin-section-appointment > div:last-of-type > a {
     color: var(--clr-neutral-100);
     background-color: var(--clr-primary-400);
+    text-decoration: none;
 }
 
 .view-packages-btn {
