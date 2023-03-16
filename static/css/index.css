@@ -10,6 +10,7 @@
 
     --bs-primary: var(--clr-primary-400);
     --bs-primary-rgb: var(--clr-primary-400);
+    --clr-success: hsl(161, 94%, 38%);
 
     scroll-behavior: smooth;
 }
@@ -122,7 +123,8 @@ header,
 .date-time-modal,
 .tips-and-reminders,
 .footer-section,
-.admin-dashboard {
+.admin-dashboard,
+.package-form {
     grid-column: 1/-1;
 }
 
@@ -1206,6 +1208,24 @@ div.detail-grid {
 
 .package > div:last-child > :nth-child(2) {
     background-color: var(--clr-accent-400);
+}
+
+.package-form {
+    display: grid;
+    gap: .25em;
+}
+
+.package-form input {
+    margin-block-end: 1.25em;
+}
+
+.package-form button {
+    margin-block-start: 1rem;
+    padding: .75rem 0;
+    font-family: var(--ff-serif);
+    border: none;
+    background: var(--clr-success);
+    color: var(--clr-neutral-100)
 }
 
 /* Media Queries */

@@ -13,6 +13,8 @@
         <p>Your upcoming appointments are shown here.</p>
     </div>
     
+
+    {% for appointment in appointments %}
     <div class="app-item">
         <div class="appointment">
             <span class="details app-date">17 October</span>
@@ -30,6 +32,7 @@
             <button class="app-cancel">Cancel</button>
         </div>
     </div>
+    {% endfor %}
 
 </main>
 

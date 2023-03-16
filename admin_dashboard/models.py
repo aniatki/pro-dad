@@ -2,6 +2,8 @@ from django.db import models
 from cloudinary.models import CloudinaryField
 from datetime import datetime, date
 from django.utils import timezone
+from django.core.validators import MinValueValidator
+
 
 
 STATUS = ((0, "Draft"), (1, "Published"))
@@ -21,7 +23,7 @@ RANGE_1_TO_10 = (
 class Package(models.Model):
     name = models.CharField(max_length=200, unique=True)
     description = models.TextField()
-    price = models.FloatField()
+    price = models.FloatField(validators=[MinValueValidator(0)])
     length = models.IntegerField(choices=RANGE_1_TO_10)
     timeframe = models.IntegerField(choices=RANGE_1_TO_10)
     thickness = models.IntegerField(choices=RANGE_1_TO_10)
@@ -66,8 +68,6 @@ class Booking(models.Model):
     booked_at = models.DateField(auto_now_add=True, blank=False)
     time = models.CharField(max_length=5, choices=APPOINTMENT_TIMES)
     date = models.DateField(blank=False, default=timezone.now)
-    # get package name from Package.name
-    # get package price from Package.price
 
     def __str__(self):
         return self.date.strftime("%m/%d/%Y")
