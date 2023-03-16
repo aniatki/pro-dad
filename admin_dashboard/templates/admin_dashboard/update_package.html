@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+<form class="package-form" action="" method="POST">
+    {% csrf_token %}
+
+    {{ form }}
+    
+    <button type="submit">Update</button>
+</form>
+{% endblock %}

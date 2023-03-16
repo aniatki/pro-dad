@@ -15,49 +15,56 @@
         <p>All your packages will appear listed below.</p>
     </section>
 
-    {% for package in packages %}
     
-        <article class="admin-section-appointment package">
-            <div>
-                <h3>{{ package.name }}</h3>
-                <p>#{{ package.id }}</p>
-            </div>
-            <p>{{ package.description }}</p>
-    
-            <div class="detail-grid">
-                <div>
-                    <span>Length (1-10):</span>
-                    <span>{{ package.length }}</span>
-                </div>
-                <div>
-                    <span>Timeframe (1-10):</span>
-                    <span>{{ package.timeframe }}</span>
-                </div>
-                <div>
-                    <span>Thickness (1-10):</span>
-                    <span>{{ package.thickness }}</span>
-                </div>
-                <div>
-                    <span>Endurance (1-10):</span>
-                    <span>{{ package.endurance }}</span>
-                </div>
-            </div>
-    
-            <div>
-                <span>€ {{ package.price }}</span>
-                <a>Edit Package</a>
-                <a href="{% url 'delete_package' package.id %}">Delete Package</a>
-            </div>
-        </article>
 
-    {% endfor %}
-    
-    <div>
+    {% if packages %}
+        {% for package in packages %}
+        
+            <article class="admin-section-appointment package">
+                <div>
+                    <h3>{{ package.name }}</h3>
+                    <p>#{{ package.id }}</p>
+                </div>
+                <p>{{ package.description }}</p>
+
+                <div class="detail-grid">
+                    <div>
+                        <span>Length (1-10):</span>
+                        <span>{{ package.length }}</span>
+                    </div>
+                    <div>
+                        <span>Timeframe (1-10):</span>
+                        <span>{{ package.timeframe }}</span>
+                    </div>
+                    <div>
+                        <span>Thickness (1-10):</span>
+                        <span>{{ package.thickness }}</span>
+                    </div>
+                    <div>
+                        <span>Endurance (1-10):</span>
+                        <span>{{ package.endurance }}</span>
+                    </div>
+                </div>
+
+                <div>
+                    <span>€ {{ package.price }}</span>
+                    <a href="{% url 'update_package' package.id %}">Edit Package</a>
+                    <a href="{% url 'delete_package' package.id %}">Delete Package</a>
+                </div>
+            </article>
+
+        {% endfor %}
+    {% else %}
+        <p>There are no packages stored.</p>
+    {% endif %}
+    <div class="add-package">
         <h4>Add package</h4>
-        <form action="" method="POST">
+        <form class="package-form" action="" method="POST">
             {% csrf_token %}
+    
             {{ form }}
-            <input type="submit" value="add">
+            
+            <button type="submit">Create</button>
         </form>
     </div>
     <a href="#" target="_top">Back to top &uarr;</a>
